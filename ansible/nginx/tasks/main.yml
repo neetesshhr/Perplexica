@@ -22,7 +22,7 @@
     src: ai.conf.j2
     dest: /etc/nginx/sites-available/ai.conf
 
-- name: Enable Nginx configuration for Crash-api
+- name: Enable Nginx configuration for Our App
   file:
     src: /etc/nginx/sites-available/ai.conf
     dest: /etc/nginx/sites-enabled/ai.conf

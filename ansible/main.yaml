@@ -2,5 +2,5 @@
   connection: local
   become: true
   roles:
-    - role: docker
+    # - role: docker
     - role: nginx
