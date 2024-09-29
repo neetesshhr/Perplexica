@@ -1,3 +1,4 @@
 ---
 # vars file for nginx
 domain_name: "mydomain.example.com"
+email_user: "example@example.com"

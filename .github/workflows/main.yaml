@@ -50,6 +50,7 @@ jobs:
         env:
           RECORD_NAME: ${{ vars.RECORD_NAME }}
           OPENAPI_KEY: ${{ secrets.OPENAPI_KEY }}
+          EMAIL_USER: rijalnitesh78@gmail.com
         working-directory: ansible
         run: |
-          ansible-playbook -e "domain_name=$RECORD_NAME openapi_key=$OPENAPI_KEY" main.yaml 
+          ansible-playbook -e "domain_name=$RECORD_NAME openapi_key=$OPENAPI_KEY email_user=$EMAIL_USER" main.yaml 
