@@ -43,7 +43,7 @@
     dest: /home/ubuntu/Perplexica/config.toml
 
 - name: Run Docker Compose
-  command: docker compose up -d
+  command: docker compose up --build -d
   args:
     chdir: /home/ubuntu/Perplexica
   become: true
