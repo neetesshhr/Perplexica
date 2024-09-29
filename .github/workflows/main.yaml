@@ -42,8 +42,7 @@ jobs:
           CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
         run: |
           curl -X PATCH "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/settings/ssl" \
-          -H "X-Auth-Email: rijalnitesh78@gmail.com" \
-          -H "X-Auth-Token: $CLOUDFLARE_API_TOKEN" \
+          -H "X-Auth-Key: $CLOUDFLARE_API_TOKEN" \
           -H "Content-Type: application/json" \
           --data '{"value":"full"}'
 
