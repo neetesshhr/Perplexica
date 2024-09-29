@@ -13,11 +13,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Fetch Public IP
-        run: |
-          PUBLIC_IP=$(curl -s https://api.ipify.org)
-          echo "PUBLIC_IP=$PUBLIC_IP" >> $GITHUB_ENV
-
       - name: Add A Record to Cloudflare DNS
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -50,7 +45,6 @@ jobs:
         env:
           RECORD_NAME: ${{ vars.RECORD_NAME }}
           OPENAPI_KEY: ${{ secrets.OPENAPI_KEY }}
-          EMAIL_USER: rijalnitesh78@gmail.com
         working-directory: ansible
         run: |
-          ansible-playbook -e "domain_name=$RECORD_NAME openapi_key=$OPENAPI_KEY email_user=$EMAIL_USER" main.yaml 
+          ansible-playbook -e "domain_name=$RECORD_NAME openapi_key=$OPENAPI_KEY" main.yaml 

@@ -4,4 +4,3 @@
   roles:
     - role: docker
     - role: nginx
-# Adding docker
