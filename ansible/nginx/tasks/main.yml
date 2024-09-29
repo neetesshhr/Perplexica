@@ -8,6 +8,8 @@
   apt:
     name: 
       - nginx
+      - certbot
+      - python3-certbot-nginx
     state: present
 
 - name: Remove nginx default configuration
@@ -35,4 +37,10 @@
   service:
     name: nginx
     state: restarted
+  become: true
+
+- name: Obtain SSL certificates with Certbot
+  command: certbot --nginx -d {{ domain_name }} --non-interactive --agree-tos --email {{ email_user }}
+  register: certbot_result
+  ignore_errors: true
   become: true
