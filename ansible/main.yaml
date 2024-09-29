@@ -1,0 +1,5 @@
+- hosts: ai
+  become: true
+  roles:
+    - role: docker
+    - role: nginx

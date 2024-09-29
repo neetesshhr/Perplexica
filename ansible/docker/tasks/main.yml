@@ -1,0 +1,49 @@
+# tasks file for docker
+- name: Update Cache
+  apt:
+    update_cache: yes
+
+- name: Update Docker and docker-compose
+  apt:
+    name: 
+      - docker.io
+      - docker-compose-v2
+    state: latest
+    update_cache: yes
+
+- name: Start docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Add user to docker group
+  user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: yes
+
+- name: Install latest Docker SDK for Python
+  apt:
+    name: python3-docker
+    state: latest
+    update_cache: yes
+
+- name: Clone a GitHub repository
+  git:
+    repo: https://github.com/ItzCrazyKns/Perplexica.git
+    dest: /home/ubuntu/Perplexica
+    clone: yes
+    update: yes
+  become: true
+
+- name: Copy config.toml
+  template:
+    src: config.toml.j2
+    dest: /home/ubuntu/Perplexica/config.toml
+
+- name: Run Docker Compose
+  command: docker compose up -d
+  args:
+    chdir: /home/ubuntu/Perplexica
+  become: true
