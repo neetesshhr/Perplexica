@@ -1,2 +1,2 @@
 [ai]
-18.212.24.129 ansible_user=ubuntu
+localhost ansible_user=ubuntu
