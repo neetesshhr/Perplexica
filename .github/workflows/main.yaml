@@ -34,7 +34,7 @@ jobs:
             "name": "'"$RECORD_NAME"'",
             "content": "'"$RECORD_CONTENT"'",
             "ttl": 120,
-            "proxied": false
+            "proxied": true
           }'
 
 
