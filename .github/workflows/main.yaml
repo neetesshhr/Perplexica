@@ -41,13 +41,14 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
         run: |
-          # Set SSL to 'Flexible' or 'Full'. You can change the value based on your need.
+          # Set SSL to 'Flexible' or 'Full'
           curl -X PATCH "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/settings/ssl" \
           -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
           -H "Content-Type: application/json" \
           --data '{
             "value": "full"  # Can also be "flexible"
           }'
+
 
       - name: Enable HTTPS redirection
         env:
@@ -61,6 +62,7 @@ jobs:
           --data '{
             "value": "on"
           }'
+
   deploy_appilcation:
     runs-on: self-hosted
     steps:
