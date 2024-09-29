@@ -18,31 +18,31 @@ jobs:
           PUBLIC_IP=$(curl -s https://api.ipify.org)
           echo "PUBLIC_IP=$PUBLIC_IP" >> $GITHUB_ENV
 
-      - name: Add A Record to Cloudflare DNS
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
-          RECORD_NAME: ${{ vars.RECORD_NAME }}  # Change this to your desired record
-          RECORD_TYPE: "A"
-          RECORD_CONTENT: ${{ vars.PUBLIC_IP }}  # Replace with the IP address
-        run: |
-          curl -X POST "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/dns_records" \
-          -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
-          -H "Content-Type: application/json" \
-          --data '{
-            "type": "'"$RECORD_TYPE"'",
-            "name": "'"$RECORD_NAME"'",
-            "content": "'"$RECORD_CONTENT"'",
-            "ttl": 120,
-            "proxied": false
-          }'
+      # - name: Add A Record to Cloudflare DNS
+      #   env:
+      #     CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      #     CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+      #     RECORD_NAME: ${{ vars.RECORD_NAME }}  # Change this to your desired record
+      #     RECORD_TYPE: "A"
+      #     RECORD_CONTENT: ${{ vars.PUBLIC_IP }}  # Replace with the IP address
+      #   run: |
+      #     curl -X POST "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/dns_records" \
+      #     -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+      #     -H "Content-Type: application/json" \
+      #     --data '{
+      #       "type": "'"$RECORD_TYPE"'",
+      #       "name": "'"$RECORD_NAME"'",
+      #       "content": "'"$RECORD_CONTENT"'",
+      #       "ttl": 120,
+      #       "proxied": false
+      #     }'
       - name: Enable SSL on Cloudflare
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
         run: |
           # Set SSL to 'Flexible' or 'Full'
-          curl -X POST "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID//ssl/certificate_packs/order" \
+          curl -X POST "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/ssl/certificate_packs/order" \
           -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
           -H "Content-Type: application/json" \
           --data '{
