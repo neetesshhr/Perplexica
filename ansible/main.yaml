@@ -1,4 +1,5 @@
-- hosts: ai
+- hosts: localhost
+  connection: local
   become: true
   roles:
     - role: docker

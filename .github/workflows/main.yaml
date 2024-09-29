@@ -24,7 +24,7 @@ jobs:
           CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
           RECORD_NAME: ${{ vars.RECORD_NAME }}  # Change this to your desired record
           RECORD_TYPE: "A"
-          RECORD_CONTENT: ${{ env.PUBLIC_IP }}  # Replace with the IP address
+          RECORD_CONTENT: ${{ vars.PUBLIC_IP }}  # Replace with the IP address
         run: |
           curl -X POST "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/dns_records" \
           -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
@@ -50,4 +50,4 @@ jobs:
           OPENAPI_KEY: ${{ secrets.OPENAPI_KEY }}
         working-directory: ansible
         run: |
-          ansible-playbook -i inventory -e "domain_name=$RECORD_NAME openapi_key=$OPENAPI_KEY" main.yaml 
+          ansible-playbook -e "domain_name=$RECORD_NAME openapi_key=$OPENAPI_KEY" main.yaml 
