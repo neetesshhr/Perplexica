@@ -432,6 +432,7 @@ jobs:
             "ttl": 120,
             "proxied": true
           }'
+          sleep 30
 
 
   deploy_appilcation:
