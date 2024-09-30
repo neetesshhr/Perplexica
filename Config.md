@@ -139,6 +139,9 @@ This approach leverages automation through GitHub Actions and Ansible for a seam
 - Debugging issues may require familiarity with these tools.
 
 If you have any further questions or need more details, feel free to ask.
+## Workflow Daigram 
+![FlowDiagram](https://github.com/user-attachments/assets/01c3c5e6-c36c-43bb-9529-e8d07be9f9d6)
+
 
 # Full tutorial of my approach
 
