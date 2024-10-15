@@ -2,7 +2,7 @@
 # Perplexica Implementation on my.domain.com
 
 ## Project Overview
-The goal is to implement **Perplexica** on `https://ai.rijalnitesh.com`, using Hetzner (Ubuntu VPS) for hosting and Cloudflare for Ubuntu management.
+The goal is to implement **Perplexica** on `https://ai.rijalnitesh.com`, using AWS (Ubuntu VPS) for hosting and Cloudflare for Ubuntu management.
 
 ---
 
